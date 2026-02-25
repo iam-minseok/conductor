@@ -30,12 +30,12 @@
             key-positions = <8 9>;
         };
 
-        LCLK {
+        left_click {
             bindings = <&mkp LCLK>;
             key-positions = <16 17>;
         };
 
-        RCLK {
+        right_click {
             bindings = <&mkp RCLK>;
             key-positions = <17 18>;
         };
