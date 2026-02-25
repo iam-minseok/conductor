@@ -138,7 +138,7 @@
 
         ARROW {
             bindings = <
-&tog 7  &trans                  &kp LG(LA(UP_ARROW))    &trans             &trans                  &trans  &trans          &kp UP_ARROW    &trans           &trans
+&tog 7  &tog 0                  &kp LG(LA(UP_ARROW))    &trans             &trans                  &trans  &trans          &kp UP_ARROW    &trans           &trans
 &trans  &kp LG(LA(LEFT_ARROW))  &kp LG(LA(DOWN_ARROW))  &kp LG(LA(RIGHT))  &trans                  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
 &trans  &trans                  &trans                  &trans             &trans                  &trans  &trans          &trans          &trans           &trans
 &trans  &trans                  &trans                  &trans             &trans  &trans  &trans  &trans                                  &trans           &trans
