@@ -14,23 +14,54 @@
 
 &lt { quick-tap-ms = <300>; };
 
+&caps_word { continue-list = <UNDERSCORE BACKSPACE DELETE MINUS>; };
+
 / {
     combos {
         compatible = "zmk,combos";
 
-        scroll {
-            bindings = <&mo 5>;
+        Escape {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 1>;
+        };
+
+        Backspace {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <8 9>;
+        };
+
+        LCLK {
+            bindings = <&mkp LCLK>;
+            key-positions = <16 17>;
+        };
+
+        RCLK {
+            bindings = <&mkp RCLK>;
             key-positions = <17 18>;
         };
 
-        mb3 {
-            bindings = <&mkp MB3>;
-            key-positions = <19 18>;
+        Scroll {
+            bindings = <&mo 5>;
+            key-positions = <16 18>;
+        };
+
+        Enter {
+            bindings = <&kp ENTER>;
+            key-positions = <18 19>;
+        };
+
+        shiftcaps {
+            bindings = <&caps_word>;
+            key-positions = <10 19>;
+        };
+
+        Tab {
+            bindings = <&kp TAB>;
+            key-positions = <10 11>;
         };
     };
 
     behaviors {
-
         // ===== Homerow Mods (CAGS / macOS 최적화) =====
         // 키 포지션 레이아웃:
         //  0  1  2  3  4      5  6  7  8  9
@@ -42,8 +73,8 @@
         // 약지(S/L)  = ⌥ Option   → 중간 빈도
         // 중지(D/K)  = ⌘ Command  → 가장 신뢰도 높은 손가락에 가장 중요한 키
         // 검지(F/J)  = ⇧ Shift    → 빠른 검지로 리듬 유지
-
         // 왼손 홈로우: 오른손 + 썸 키를 눌렀을 때만 hold 발동
+
         hm_l: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -52,11 +83,13 @@
             require-prior-idle-ms = <150>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39>;
             hold-trigger-on-release;
         };
 
         // 오른손 홈로우: 왼손 + 썸 키를 눌렀을 때만 hold 발동
+
         hm_r: homerow_mods_right {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -65,6 +98,7 @@
             require-prior-idle-ms = <150>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35 36 37 38 39>;
             hold-trigger-on-release;
         };
@@ -75,10 +109,10 @@
 
         default_layer {
             bindings = <
-&kp Q            &kp W         &kp E         &kp R                   &kp T                           &kp Y        &kp U                   &kp I         &kp O         &kp P
-&hm_l LCTRL A    &hm_l LALT S  &hm_l LGUI D  &hm_l LSHFT F           &kp G                           &kp H        &hm_r RSHFT J           &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL MINUS
-&kp Z            &kp X         &kp C         &kp V                   &kp B                           &kp N        &kp M                   &kp COMMA     &kp PERIOD    &mt RIGHT_SHIFT SLASH
-&kp TAB          &kp LCTRL     &kp LEFT_ALT  &mt LEFT_COMMAND LANG2  &lt 1 SPACE  &lt 2 BACKSPACE    &lt 3 ENTER  &mt RIGHT_COMMAND LANG1               &kp C_VOL_DN  &kp C_VOLUME_UP
+&kp Q          &kp W             &kp E             &kp R          &kp T                                    &kp Y      &kp U          &kp I              &kp O             &kp P
+&hm_l LCTRL A  &hm_l LEFT_GUI S  &hm_l LEFT_ALT D  &hm_l LSHFT F  &kp G                                    &kp H      &hm_r RSHFT J  &hm_r RIGHT_ALT K  &hm_r LEFT_GUI L  &hm_r RCTRL SEMICOLON
+&kp Z          &kp X             &kp C             &kp V          &kp B                                    &kp N      &kp M          &kp COMMA          &kp PERIOD        &kp SLASH
+&kp TAB        &kp LCTRL         &kp LEFT_ALT      &mo 3          &kp SPACE  &lt 1 BACKSPACE  &lt 2 ENTER  &kp SPACE                                    &mo 6             &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -86,28 +120,28 @@
 
         FUNCTION {
             bindings = <
-&kp EXCLAMATION       &kp AT_SIGN           &kp HASH        &kp DOLLAR  &kp PERCENT           &kp CARET  &kp AMPERSAND  &kp ASTERISK      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp LS(LG(NUMBER_3))  &kp LS(LG(NUMBER_4))  &kp LS(LG(N5))  &trans      &trans                &kp MINUS  &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET     &kp NON_US_BACKSLASH
-&trans                &trans                &trans          &trans      &trans                &trans     &trans         &kp SEMICOLON     &kp SINGLE_QUOTE      &kp GRAVE
-&kp ESCAPE            &trans                &trans          &trans      &trans       &mo 6    &trans     &trans                           &trans                &trans
+&kp LS(LG(NUMBER_4))  &trans            &trans             &trans             &kp F11                             &trans    &trans          &kp UP_ARROW  &trans     &trans
+&trans                &kp LC(LA(LEFT))  &kp LC(LA(ENTER))  &kp LC(LA(RIGHT))  &kp LC(UP_ARROW)                    &kp HOME  &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &trans
+&trans                &trans            &trans             &trans             &kp LC(DOWN_ARROW)                  &kp END   &trans          &trans        &trans     &trans
+&trans                &trans            &trans             &trans             &trans              &trans  &trans  &trans                                  &trans     &trans
             >;
         };
 
         NUM {
             bindings = <
-&kp F1   &kp F2   &kp F3   &kp F4   &kp F5             &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none         &trans
-&kp F6   &kp F7   &kp F8   &kp F9   &kp F10            &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp PLUS      &kp MINUS
-&kp F11  &kp F12  &kp F13  &kp F14  &kp F15            &kp N7        &kp N8        &kp N9        &kp ASTERISK  &kp SLASH
-&trans   &trans   &trans   &trans   &trans   &trans    &kp PERIOD    &kp N0                      &trans        &trans
+&trans  &trans  &trans  &trans  &trans                   &kp N7        &kp N8        &kp N9        &kp N0            &kp SQT
+&trans  &trans  &trans  &trans  &trans                   &kp N4        &kp N5        &kp NUMBER_6  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5                   &kp NUMBER_1  &kp NUMBER_2  &kp N3        &kp MINUS         &kp EQUAL
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &trans  &trans  &trans                                    &trans            &trans
             >;
         };
 
         ARROW {
             bindings = <
-&trans  &trans  &kp LS(LC(NUMBER_1))  &kp LS(LC(NUMBER_2))  &kp LS(LC(NUMBER_3))            &kp LC(UP_ARROW)  &kp LC(LEFT_ARROW)  &kp UP_ARROW    &kp LC(RIGHT)    &kp LC(DOWN_ARROW)
-&trans  &trans  &kp LS(LC(NUMBER_4))  &kp LS(LC(N5))        &kp LS(LC(NUMBER_6))            &kp LC(A)         &kp LEFT_ARROW      &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LC(E)
-&trans  &trans  &kp LS(LC(N7))        &kp LS(LC(N8))        &kp LS(LC(N9))                  &kp C_PREVIOUS    &kp LG(LEFT)        &trans          &kp RG(RIGHT)    &kp C_NEXT
-&trans  &trans  &trans                &trans                &trans                &trans    &trans            &trans                              &kp C_BRI_DEC    &kp C_BRI_INC
+&tog 7  &trans                  &kp LG(LA(UP_ARROW))    &trans             &trans                  &trans  &trans          &kp UP_ARROW    &trans           &trans
+&trans  &kp LG(LA(LEFT_ARROW))  &kp LG(LA(DOWN_ARROW))  &kp LG(LA(RIGHT))  &trans                  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
+&trans  &trans                  &trans                  &trans             &trans                  &trans  &trans          &trans          &trans           &trans
+&trans  &trans                  &trans                  &trans             &trans  &trans  &trans  &trans                                  &trans           &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -115,73 +149,73 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &mkp MB1  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans            &trans    &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
 
         SCROLL {
             bindings = <
-&trans  &trans  &none   &trans  &trans            &none   &none   &trans  &trans  &none
-&none   &trans  &trans  &trans  &trans            &none   &none   &none   &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
 
         Bluetooth {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &trans
-&trans  &trans  &trans  &trans  &trans            &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &trans
-&trans  &trans  &trans  &trans  &trans            &trans         &trans         &trans         &trans         &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans         &bootloader                   &bt BT_CLR     &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans                  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &trans
+&trans  &trans  &trans  &trans  &trans                  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans         &trans         &trans         &bt BT_CLR     &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &bootloader                                  &trans         &trans
             >;
         };
 
-        layer_7 {
+        lol {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&kp N1            &kp N2  &kp N3  &kp N4  &kp N5                 &trans  &trans  &trans  &trans  &trans
+&kp LEFT_CONTROL  &kp Q   &kp W   &kp E   &kp R                  &trans  &trans  &trans  &trans  &trans
+&trans            &kp A   &kp S   &kp D   &kp F                  &trans  &trans  &trans  &trans  &trans
+&trans            &trans  &trans  &trans  &trans  &kp B  &trans  &trans                  &trans  &trans
             >;
         };
 
         layer_8 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
 
         layer_9 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
 
         layer_10 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
 
         layer_11 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans
             >;
         };
     };
