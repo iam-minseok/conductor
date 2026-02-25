@@ -6,6 +6,7 @@
 #define MOUSE 4
 #define SCROLL 5
 #define NUM 6
+#define LOL 7
 
 &mt {
     flavor = "balanced";
