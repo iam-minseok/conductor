@@ -130,10 +130,10 @@
 
         NUM {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                   &kp N7        &kp N8        &kp N9        &kp N0            &kp SQT
-&trans  &trans  &trans  &trans  &trans                   &kp N4        &kp N5        &kp NUMBER_6  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5                   &kp NUMBER_1  &kp NUMBER_2  &kp N3        &kp MINUS         &kp EQUAL
-&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &trans  &trans  &trans                                    &trans            &trans
+&trans  &trans  &trans  &trans  &trans                      &kp N7        &kp N8        &kp N9        &kp N0            &kp SQT
+&trans  &trans  &trans  &trans  &trans                      &kp N4        &kp N5        &kp NUMBER_6  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5                      &kp NUMBER_1  &kp NUMBER_2  &kp N3        &kp MINUS         &kp EQUAL
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp GRAVE  &trans  &trans                                    &trans            &trans
             >;
         };
 
@@ -177,10 +177,10 @@
 
         lol {
             bindings = <
-&kp N1            &kp N2  &kp N3  &kp N4  &kp N5                 &trans  &trans  &trans  &trans  &trans
-&kp LEFT_CONTROL  &kp Q   &kp W   &kp E   &kp R                  &trans  &trans  &trans  &trans  &trans
-&trans            &kp A   &kp S   &kp D   &kp F                  &trans  &trans  &trans  &trans  &trans
-&trans            &trans  &trans  &tog 7  &trans  &kp B  &trans  &trans                  &trans  &trans
+&kp ESC           &kp N1  &kp N2  &kp N3  &kp N4                    &trans  &trans  &trans  &trans  &trans
+&kp TAB           &kp Q   &kp W   &kp E   &kp R                     &trans  &trans  &trans  &trans  &trans
+&kp LEFT_CONTROL  &kp A   &kp S   &kp D   &kp F                     &trans  &trans  &trans  &trans  &trans
+&trans            &trans  &trans  &tog 7  &kp B   &kp LALT  &trans  &trans                  &trans  &trans
             >;
         };
 
