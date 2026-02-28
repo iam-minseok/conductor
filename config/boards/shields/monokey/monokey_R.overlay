@@ -35,7 +35,7 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors =
-            <&zip_x_scaler 3 2>,      // X축을 Y 대비 1.5배로 증폭 (3/2)
+            <&zip_x_scaler 4 3>,      // X축을 Y 대비 1.33배로 증폭 (4/3)
             <&zip_temp_layer 4 700>;  // AML 타임아웃 700ms로 단축
     };
 };
